@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-   //Initializing Core Data Model
+    //Initializing Core Data Model
     let persistentContainer: NSPersistentContainer
     
     init() {
@@ -20,14 +20,23 @@ class CoreDataManager {
             }
         }
     }
-    
-    func saveWorkout(workoutTitle: String ) {
+    func getAllWorkouts() -> [Workout] {
         
-        let workout = Workout(context: persistentContainer.viewContext)
-        workout.workoutTitle = workoutTitle
+        let fetchRequest: NSFetchRequest<Workout> = Workout.fetchRequest()
         
         do {
-        try persistentContainer.viewContext.save()
+            return try persistentContainer.viewContext.fetch(fetchRequest)
+        }catch{
+            return[]
+        }
+    }
+    func saveWorkout(workoutName: String ) {
+        
+        let workout = Workout(context: persistentContainer.viewContext)
+        workout.title = workoutName
+        
+        do {
+            try persistentContainer.viewContext.save()
             print("Workout saved!")
         } catch {
             print("Failed to save Workout \(error)")
