@@ -17,29 +17,37 @@ struct ContentView: View {
         workouts = coreDM.getAllWorkouts()
     }
     var body: some View {
-        VStack {
-            TextField("Enter name of workout", text: $workoutName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button("Save") {
-                coreDM.saveWorkout(workoutName: workoutName)
-                callWorkouts()
-            }
-            List {
-                ForEach(workouts, id: \.self) { workout in
-                    Text(workout.title ?? "")
-                }.onDelete(perform: { IndexSet in
-                    IndexSet.forEach { index in
-                        let workout = workouts[index]
-                        coreDM.deleteWorkout(workout: workout)
-                        callWorkouts()
-                    }
-                })
-            }
-            Spacer()
-        }.padding()
-            .onAppear(perform: {
-               callWorkouts()
+        NavigationView {
+            VStack {
+                TextField("Enter name of workout", text: $workoutName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button("Save") {
+                    coreDM.saveWorkout(workoutName: workoutName)
+                    callWorkouts()
+                }
+                List {
+                    ForEach(workouts, id: \.self) { workout in
+                        NavigationLink(
+                            destination: WorkoutDetail(workout: workout),
+                            label: {
+                                Text(workout.title ?? "")
+                            })
+                    }.onDelete(perform: { IndexSet in
+                        IndexSet.forEach { index in
+                            let workout = workouts[index]
+                            coreDM.deleteWorkout(workout: workout)
+                            callWorkouts()
+                        }
+                    })
+                }
+                .padding()
+                .listStyle(PlainListStyle())
+                Spacer()
+            }.padding()
+                .onAppear(perform: {
+                   callWorkouts()
             })
+        }
     }
 }
 

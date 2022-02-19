@@ -20,6 +20,13 @@ class CoreDataManager {
             }
         }
     }
+    func updateWorkout() {
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback()
+        }
+    }
     func deleteWorkout(workout: Workout)   {
         persistentContainer.viewContext.delete(workout)
         

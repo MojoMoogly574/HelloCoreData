@@ -13,6 +13,7 @@
 		09339DC327C0CA2F0056971E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09339DC227C0CA2F0056971E /* Preview Assets.xcassets */; };
 		09339DCB27C0CAA10056971E /* WorkoutModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09339DC927C0CAA10056971E /* WorkoutModel.xcdatamodeld */; };
 		09339DCE27C0CC5A0056971E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09339DCD27C0CC5A0056971E /* CoreDataManager.swift */; };
+		09339DD027C0F2460056971E /* WorkoutDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09339DCF27C0F2460056971E /* WorkoutDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		09339DC227C0CA2F0056971E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		09339DCA27C0CAA10056971E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		09339DCD27C0CC5A0056971E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		09339DCF27C0F2460056971E /* WorkoutDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				09339DBF27C0CA2F0056971E /* Assets.xcassets */,
 				09339DC127C0CA2F0056971E /* Preview Content */,
 				09339DC927C0CAA10056971E /* WorkoutModel.xcdatamodeld */,
+				09339DCF27C0F2460056971E /* WorkoutDetail.swift */,
 			);
 			path = HelloCoreData;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 				09339DBE27C0CA2B0056971E /* ContentView.swift in Sources */,
 				09339DBC27C0CA2B0056971E /* HelloCoreDataApp.swift in Sources */,
 				09339DCE27C0CC5A0056971E /* CoreDataManager.swift in Sources */,
+				09339DD027C0F2460056971E /* WorkoutDetail.swift in Sources */,
 				09339DCB27C0CAA10056971E /* WorkoutModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
