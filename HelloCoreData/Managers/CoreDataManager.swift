@@ -20,5 +20,18 @@ class CoreDataManager {
             }
         }
     }
+    
+    func saveWorkout(workoutTitle: String ) {
+        
+        let workout = Workout(context: persistentContainer.viewContext)
+        workout.workoutTitle = workoutTitle
+        
+        do {
+        try persistentContainer.viewContext.save()
+            print("Workout saved!")
+        } catch {
+            print("Failed to save Workout \(error)")
+        }
+    }
 }
 

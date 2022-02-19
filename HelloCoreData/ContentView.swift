@@ -10,11 +10,18 @@ import SwiftUI
 struct ContentView: View {
     
     let coreDM: CoreDataManager
+    @State private var workoutTitle: String =  ""
     
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            TextField("Enter name of workout", text: $workoutTitle)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Button("Save") {
+                coreDM.saveWorkout(workoutTitle: workoutTitle)
+            }
+            Spacer()
+        }.padding()
     }
 }
 
