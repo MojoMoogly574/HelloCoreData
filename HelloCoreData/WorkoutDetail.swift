@@ -12,6 +12,8 @@ struct WorkoutDetail: View {
     let coreDM = CoreDataManager()
     let workout: Workout
     @State private var workoutName: String = ""
+    @Binding var refreshDatabase: Bool
+    
     
     var body: some View {
         VStack {
@@ -21,6 +23,7 @@ struct WorkoutDetail: View {
                 if !workoutName.isEmpty {
                     workout.title = workoutName
                     coreDM.updateWorkout()
+                    refreshDatabase.toggle()
                 }
             }
         }.padding()
@@ -32,6 +35,6 @@ struct WorkoutDetail_Previews: PreviewProvider {
         
         let coreDM = CoreDataManager()
         let workout = Workout(context: coreDM.persistentContainer.viewContext)
-        WorkoutDetail(workout: workout )
+        WorkoutDetail(workout: workout,refreshDatabase: .constant(false))
     }
 }

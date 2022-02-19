@@ -12,6 +12,7 @@ struct ContentView: View {
     let coreDM: CoreDataManager
     @State private var workoutName: String =  ""
     @State private var workouts: [Workout] = [Workout]()
+    @State private var refreshDatabase: Bool = false
     
     private func callWorkouts() {
         workouts = coreDM.getAllWorkouts()
@@ -28,7 +29,7 @@ struct ContentView: View {
                 List {
                     ForEach(workouts, id: \.self) { workout in
                         NavigationLink(
-                            destination: WorkoutDetail(workout: workout),
+                            destination: WorkoutDetail(workout: workout, refreshDatabase: $refreshDatabase),
                             label: {
                                 Text(workout.title ?? "")
                             })
@@ -42,6 +43,7 @@ struct ContentView: View {
                 }
                 .padding()
                 .listStyle(PlainListStyle())
+                .accentColor(refreshDatabase ? .white : .black)
                 Spacer()
             }.padding()
                 .onAppear(perform: {
