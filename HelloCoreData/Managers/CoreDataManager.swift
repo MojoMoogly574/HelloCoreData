@@ -20,6 +20,18 @@ class CoreDataManager {
             }
         }
     }
+    func deleteWorkout(workout: Workout)   {
+        persistentContainer.viewContext.delete(workout)
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback()
+            print("Failed to save content \(error.localizedDescription)")
+        }
+            
+    }
+    
     func getAllWorkouts() -> [Workout] {
         
         let fetchRequest: NSFetchRequest<Workout> = Workout.fetchRequest()
@@ -41,6 +53,7 @@ class CoreDataManager {
         } catch {
             print("Failed to save Workout \(error)")
         }
+        
     }
 }
 

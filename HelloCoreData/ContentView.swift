@@ -13,25 +13,36 @@ struct ContentView: View {
     @State private var workoutName: String =  ""
     @State private var workouts: [Workout] = [Workout]()
     
-    
+    private func callWorkouts() {
+        workouts = coreDM.getAllWorkouts()
+    }
     var body: some View {
         VStack {
             TextField("Enter name of workout", text: $workoutName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Button("Save") {
                 coreDM.saveWorkout(workoutName: workoutName)
-                workouts = coreDM.getAllWorkouts()
+                callWorkouts()
             }
-            List(workouts, id: \.self) { workout in
-                Text(workout.title ?? "")
+            List {
+                ForEach(workouts, id: \.self) { workout in
+                    Text(workout.title ?? "")
+                }.onDelete(perform: { IndexSet in
+                    IndexSet.forEach { index in
+                        let workout = workouts[index]
+                        coreDM.deleteWorkout(workout: workout)
+                        callWorkouts()
+                    }
+                })
             }
             Spacer()
         }.padding()
             .onAppear(perform: {
-               workouts = coreDM.getAllWorkouts()
+               callWorkouts()
             })
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
